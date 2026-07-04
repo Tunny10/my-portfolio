@@ -10,12 +10,20 @@
     
     <style>
         /* ตั้งค่าธีมพื้นหลังมืดสไตล์อวกาศลึก */
+        html {
+            scroll-behavior: smooth;
+        }
         body {
             position: relative;
             background-color: #080b11 !important; 
             color: #f1f5f9 !important;
             font-family: 'Kanit', sans-serif;
             overflow-x: hidden;
+        }
+
+        /* บังคับหลบ Navbar เวลาคลิกลิงก์เมนู */
+        section {
+            scroll-margin-top: 80px; 
         }
 
         /* ตกแต่งแถบเลื่อน (Scrollbar) ด้านข้าง */
@@ -68,6 +76,36 @@
             border-color: rgba(59, 130, 246, 0.4) !important;
             box-shadow: 0 12px 30px rgba(59, 130, 246, 0.15);
         }
+
+        /* สไตล์ย่อยของการ์ดสกิลรูปแบบใหม่ */
+        .skill-card {
+            padding: 1.25rem;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .skill-icon-wrapper {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #60a5fa;
+            flex-shrink: 0;
+        }
+        .skill-badge {
+            font-size: 0.75rem;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+        .badge-advanced { background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3); }
+        .badge-intermediate { background: rgba(59, 130, 246, 0.15); color: #3b82f6; border: 1px solid rgba(59, 130, 246, 0.3); }
 
         /* ปรับแต่งส่วนหัวข้อให้มีเส้นใต้เรืองแสง */
         .section-title {
@@ -142,13 +180,6 @@
             border-color: #60a5fa;
         }
 
-        /* แถบคะแนนทักษะ */
-        .progress {
-            height: 8px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-        }
-
         /* ส่วนปุ่มโซเชียลติดต่อ */
         .contact-icon-box {
             width: 60px;
@@ -194,175 +225,333 @@
     <header class="container text-center mt-5 mb-5 py-5">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <img src="image/profile.jpg" alt="Profile Picture" class="rounded-circle mb-4 profile-img" width="150" height="150">
+                <img src="profile.jpg" alt="Profile Picture" class="rounded-circle mb-4 profile-img" width="150" height="150">
                 <h1 class="display-4 fw-bold text-white mb-2" style="font-family: 'Fira Code', monospace;">Hello, I'm Tun</h1>
                 <p class="lead text-secondary mb-4">นักศึกษาวิศวกรรมคอมพิวเตอร์ & Web Developer</p>
                 <div class="mt-3 d-flex justify-content-center gap-3">
                     <a href="#contact" class="btn btn-cyber-primary btn-lg">ติดต่อฉันเลย</a>
-                    <a href="#" class="btn btn-cyber-outline btn-lg">ดาวน์โหลด Resume</a>
+                    <a href="resume.pdf" target="_blank" class="btn btn-cyber-outline btn-lg">ดาวน์โหลด Resume</a>
                 </div>
             </div>
         </div>
     </header>
 
     <section id="about" class="container mb-5 pt-5">
-        <div class="row g-4">
-            <div class="col-md-6">
+        <div class="row g-4 mb-5">
+            <div class="col-lg-6">
                 <h3 class="section-title text-white">เกี่ยวกับฉัน (About Me)</h3>
-                <p style="text-indent: 30px; line-height: 1.8;">สวัสดีครับ กระผมเป็นนักศึกษาที่ชื่นชอบการออกแบบและพัฒนาเว็บไซต์ มีความมุ่งมั่นที่จะเรียนรู้เทคโนโลยีใหม่ๆ เพื่อนำมาสร้างสรรค์ผลงานที่ใช้งานได้จริง และพร้อมเรียนรู้สิ่งใหม่ๆ อยู่เสมอ</p>
-                <div class="row mt-4 g-3 text-secondary">
-                    <div class="col-sm-6"><strong>ชื่อ-นามสกุล:</strong> นายสิทธา สัจจหทยาศรม</div>
-                    <div class="col-sm-6"><strong>ชื่อเล่น:</strong> ทัน</div>
-                    <div class="col-sm-6"><strong>อายุ:</strong> 21 ปี</div>
-                    <div class="col-sm-6"><strong>วันเกิด:</strong> 10 สิงหาคม พ.ศ.2547</div>
-                    <div class="col-sm-6"><strong>สัญชาติ:</strong> ไทย</div>
-                    <div class="col-sm-6"><strong>ศาสนา:</strong> พุทธ</div>
+                <div class="card p-4 h-100 justify-content-center">
+                    <p style="text-indent: 30px; line-height: 1.8; margin-bottom: 24px;">สวัสดีครับ กระผมเป็นนักศึกษาที่ชื่นชอบการออกแบบและพัฒนาเว็บไซต์ มีความมุ่งมั่นที่จะเรียนรู้เทคโนโลยีใหม่ๆ เพื่อนำมาสร้างสรรค์ผลงานที่ใช้งานได้จริง และพร้อมเรียนรู้สิ่งใหม่ๆ อยู่เสมอ</p>
+                    <div class="row g-3 text-secondary">
+                        <div class="col-sm-12"><strong>ชื่อ-นามสกุล:</strong> นายสิทธา สัจจหทยาศรม</div>
+                        <div class="col-sm-6"><strong>ชื่อเล่น:</strong> ทัน</div>
+                        <div class="col-sm-6"><strong>อายุ:</strong> 21 ปี</div>
+                        <div class="col-sm-12"><strong>วันเกิด:</strong> 10 สิงหาคม พ.ศ.2547</div>
+                        <div class="col-sm-6"><strong>สัญชาติ:</strong> ไทย</div>
+                        <div class="col-sm-6"><strong>ศาสนา:</strong> พุทธ</div>
+                    </div>
                 </div>
-                
-                <h4 class="mt-5 text-white mb-3"><i class="bi bi-mortarboard-fill me-2 text-primary"></i>ประวัติการศึกษา</h4>
-                <ul class="list-group list-group-flush border-0">
-                    <li class="list-group-item p-3">
-                        <strong class="text-white">พ.ศ. 2566 - ปัจจุบัน:</strong> 
-                        <div class="small mt-1 text-secondary">มหาวิทยาลัยราชภัฏพิบูลสงคราม คณะเทคโนโลยีอุตสาหกรรม สาขาวิศวกรรมคอมพิวเตอร์</div>
+            </div>
+            
+            <div class="col-lg-6">
+                <h3 class="section-title text-white"><i class="bi bi-mortarboard-fill me-2 text-primary"></i>ประวัติการศึกษา</h3>
+                <ul class="list-group list-group-flush border-0 bg-transparent h-100 d-flex flex-column justify-content-between">
+                    <li class="list-group-item p-4 bg-transparent border-secondary-subtle" style="flex: 1; margin-bottom: 16px; display: flex; flex-direction: column; justify-content: center;">
+                        <strong class="text-white fs-5">พ.ศ. 2566 - ปัจจุบัน:</strong> 
+                        <div class="mt-2 text-secondary">มหาวิทยาลัยราชภัฏพิบูลสงคราม คณะเทคโนโลยีอุตสาหกรรม สาขาวิศวกรรมคอมพิวเตอร์</div>
                     </li>
-                    <li class="list-group-item p-3">
-                        <strong class="text-white">พ.ศ. 2563 - 2565:</strong> 
-                        <div class="small mt-1 text-secondary">วิทยาลัยเทคนิคกำแพงเพชร แผนการเรียน ช่างไฟฟ้ากำลัง</div>
+                    <li class="list-group-item p-4 bg-transparent border-secondary-subtle" style="flex: 1; margin-bottom: 0; display: flex; flex-direction: column; justify-content: center;">
+                        <strong class="text-white fs-5">พ.ศ. 2563 - 2565:</strong> 
+                        <div class="mt-2 text-secondary">วิทยาลัยเทคนิคกำแพงเพชร แผนการเรียน ช่างไฟฟ้ากำลัง</div>
                     </li>
                 </ul>
             </div>
+        </div>
 
+        <hr class="border-secondary my-5">
+
+        <div class="text-center mb-5">
+            <h3 class="section-title text-white d-inline-block">ทักษะความสามารถ (Skills)</h3>
+        </div>
+        
+        <h5 class="text-primary mb-4"><i class="bi bi-cpu-fill me-2"></i>Technical Skills</h5>
+        <div class="row g-4 mb-5">
+            <div class="col-md-4 col-sm-6">
+                <div class="card p-4 text-center h-100 d-flex flex-column align-items-center justify-content-center">
+                    <div class="skill-icon-wrapper mb-3"><i class="bi bi-code-slash"></i></div>
+                    <div class="fw-bold text-white small mb-2">HTML5 & CSS3</div>
+                    <span class="skill-badge badge-advanced">Advanced</span>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="card p-4 text-center h-100 d-flex flex-column align-items-center justify-content-center">
+                    <div class="skill-icon-wrapper mb-3"><i class="bi bi-bootstrap-fill"></i></div>
+                    <div class="fw-bold text-white small mb-2">Bootstrap CSS</div>
+                    <span class="skill-badge badge-advanced">Advanced</span>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="card p-4 text-center h-100 d-flex flex-column align-items-center justify-content-center">
+                    <div class="skill-icon-wrapper mb-3"><i class="bi bi-terminal-fill"></i></div>
+                    <div class="fw-bold text-white small mb-2">Python Programming</div>
+                    <span class="skill-badge badge-intermediate">Intermediate</span>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="card p-4 text-center h-100 d-flex flex-column align-items-center justify-content-center">
+                    <div class="skill-icon-wrapper mb-3"><i class="bi bi-vector-pen"></i></div>
+                    <div class="fw-bold text-white small mb-2">UI/UX & Graphic Design</div>
+                    <span class="skill-badge badge-intermediate">Intermediate</span>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="card p-4 text-center h-100 d-flex flex-column align-items-center justify-content-center">
+                    <div class="skill-icon-wrapper mb-3" style="color: #f59e0b; background: rgba(245, 158, 11, 0.1); border-color: rgba(245, 158, 11, 0.2);"><i class="bi bi-filetype-js"></i></div>
+                    <div class="fw-bold text-white small mb-2">JavaScript</div>
+                    <span class="skill-badge" style="background: rgba(245, 158, 11, 0.15); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.3);">Beginner</span>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="card p-4 text-center h-100 d-flex flex-column align-items-center justify-content-center">
+                    <div class="skill-icon-wrapper mb-3" style="color: #a855f7; background: rgba(168, 85, 247, 0.1); border-color: rgba(168, 85, 247, 0.2);"><i class="bi bi-c-circle-fill"></i></div>
+                    <div class="fw-bold text-white small mb-2">C / C++ Programming</div>
+                    <span class="skill-badge" style="background: rgba(168, 85, 247, 0.15); color: #a855f7; border: 1px solid rgba(168, 85, 247, 0.3);">Beginner</span>
+                </div>
+            </div>
+        </div>
+
+        <h5 class="text-info mb-4"><i class="bi bi-wrench-adjustable-circle-fill me-2"></i>Tools & Platforms</h5>
+        <div class="row g-4 mb-5">
+            <div class="col-md-4">
+                <div class="card p-4 text-center h-100 d-flex flex-column align-items-center justify-content-center">
+                    <div class="fs-2 mb-2" style="color: #f05032;"><i class="bi bi-github"></i></div>
+                    <div class="fw-bold text-white">Git / GitHub</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card p-4 text-center h-100 d-flex flex-column align-items-center justify-content-center">
+                    <div class="fs-2 mb-2" style="color: #a259ff;"><i class="bi bi-figma"></i></div>
+                    <div class="fw-bold text-white">Figma</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card p-4 text-center h-100 d-flex flex-column align-items-center justify-content-center">
+                    <div class="fs-2 mb-2" style="color: #007acc;"><i class="bi bi-boxes"></i></div>
+                    <div class="fw-bold text-white">VS Code</div>
+                </div>
+            </div>
+        </div>
+
+        <h5 class="text-success mb-4"><i class="bi bi-person-workspace me-2"></i>Professional Soft Skills</h5>
+        <div class="row g-4 mb-5">
             <div class="col-md-6">
-                <h3 class="section-title text-white">ทักษะความสามารถ (Skills)</h3>
-                
-                <div class="p-2 mb-4">
-                    <div class="mb-4">
-                        <div class="d-flex justify-content-between mb-2">
-                            <span class="text-white">HTML & CSS</span>
-                            <span class="small">80%</span>
-                        </div>
-                        <div class="progress">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                    </div>
+                <div class="card p-4 text-center h-100 d-flex flex-column align-items-center justify-content-center">
+                    <div class="skill-icon-wrapper mb-3" style="color:#10b981; background:rgba(16,185,129,0.1); border-color:rgba(16,185,129,0.2);"><i class="bi bi-chat-left-dots-fill"></i></div>
+                    <div class="fw-bold text-white mb-2">Chatbot UI Development</div>
+                    <span class="text-secondary small">การออกแบบโครงสร้าง UI แชตบอต</span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card p-4 text-center h-100 d-flex flex-column align-items-center justify-content-center">
+                    <div class="skill-icon-wrapper mb-3" style="color:#10b981; background:rgba(16,185,129,0.1); border-color:rgba(16,185,129,0.2);"><i class="bi bi-lightbulb-fill"></i></div>
+                    <div class="fw-bold text-white mb-2">Engineering Problem Solving</div>
+                    <span class="text-secondary small">คิดวิเคราะห์แก้ปัญหาเชิงวิศวกรรม</span>
+                </div>
+            </div>
+        </div>
 
-                    <div class="mb-4">
-                        <div class="d-flex justify-content-between mb-2">
-                            <span class="text-white">Bootstrap Framework</span>
-                            <span class="small">70%</span>
-                        </div>
-                        <div class="progress">
-                            <div class="progress-bar bg-info" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
+        <h5 class="text-warning mb-4"><i class="bi bi-patch-check-fill me-2"></i>เกียรติบัตร (Certificates)</h5>
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="d-flex align-items-center justify-content-center p-3" style="height: 220px;">
+                        <img src="card1.jpg" class="img-fluid rounded" style="max-height: 100%; object-fit: contain;" alt="User Experience and User Interface Design">
                     </div>
-
-                    <div class="mb-3">
-                        <div class="d-flex justify-content-between mb-2">
-                            <span class="text-white">การออกแบบ (Graphic Design)</span>
-                            <span class="small">60%</span>
-                        </div>
-                        <div class="progress">
-                            <div class="progress-bar bg-warning" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
+                    <div class="card-body p-3 text-center d-flex align-items-center justify-content-center" style="min-height: 60px;">
+                        <p class="card-text small fw-bold text-white mb-0">User Experience and User Interface Design</p>
                     </div>
                 </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="d-flex align-items-center justify-content-center p-3" style="height: 220px;">
+                        <img src="card2.jpg" class="img-fluid rounded" style="max-height: 100%; object-fit: contain;" alt="Python Essentials 1">
+                    </div>
+                    <div class="card-body p-3 text-center d-flex align-items-center justify-content-center" style="min-height: 60px;">
+                        <p class="card-text small fw-bold text-white mb-0">Python Essentials 1 (Cisco Academy)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                <h4 class="text-white mt-5 mb-3"><i class="bi bi-patch-check-fill me-2 text-primary"></i>เกียรติบัตร (Certificates)</h4>
-                <div class="row g-3">
-                    <div class="col-sm-6">
-                        <div class="card h-100 shadow-sm border-0">
-                            <div class="d-flex align-items-center justify-content-center p-2" style="height: 180px;">
-                                <img src="image/card1.jpg" class="img-fluid rounded" style="max-height: 100%; object-fit: contain;" alt="User Experience and User Interface Design">
-                            </div>
-                            <div class="card-body p-3 text-center d-flex align-items-center justify-content-center" style="min-height: 60px;">
-                                <p class="card-text small fw-bold text-white mb-0">User Experience and User Interface Design</p>
-                            </div>
-                        </div>
+    <section id="works" class="container mb-5 pt-5">
+        <div class="text-center mb-5">
+            <h3 class="section-title text-white d-inline-block">ผลงานของฉัน (Portfolio)</h3>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="card h-100 border-0 shadow-sm project-card" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); transition: all 0.3s ease;">
+                    <div class="position-relative overflow-hidden rounded-top" style="height: 240px; background: rgba(0,0,0,0.2);">
+                        <img src="chatbot1.png" class="img-fluid w-100 h-100" style="object-fit: cover;" alt="CPE Chatbot Web Application">
+                        <span class="badge bg-primary position-absolute top-0 end-0 m-3" style="font-weight: 500;">CPE Project</span>
                     </div>
                     
-                    <div class="col-sm-6">
-                        <div class="card h-100 shadow-sm border-0">
-                            <div class="d-flex align-items-center justify-content-center p-2" style="height: 180px;">
-                                <img src="image/card2.jpg" class="img-fluid rounded" style="max-height: 100%; object-fit: contain;" alt="Python Essentials 1">
+                    <div class="card-body p-4 d-flex flex-column justify-content-between">
+                        <div>
+                            <h5 class="card-title text-white fw-bold mb-3">CPE Chatbot UI & Web Development</h5>
+                            <p class="text-secondary small" style="line-height: 1.6; text-indent: 20px;">
+                                ออกแบบและพัฒนาส่วนติดต่อผู้ใช้งาน (UI) สำหรับระบบแชตบอตจำลองในรายวิชาวิศวกรรมคอมพิวเตอร์ โดยเน้นโครงสร้างที่ตอบสนองได้ดี (Responsive Design)...
+                            </p>
+                            <div class="mb-4 mt-3">
+                                <span class="badge rounded-pill bg-dark text-info border border-info-subtle me-1">HTML5</span>
+                                <span class="badge rounded-pill bg-dark text-info border border-info-subtle me-1">Bootstrap</span>
+                                <span class="badge rounded-pill bg-dark text-info border border-info-subtle">UI/UX Design</span>
                             </div>
-                            <div class="card-body p-3 text-center d-flex align-items-center justify-content-center" style="min-height: 60px;">
-                                <p class="card-text small fw-bold text-white mb-0">Python Essentials 1 (Cisco Academy)</p>
-                            </div>
+                        </div>
+                        
+                        <div class="d-grid">
+                            <button type="button" class="btn btn-outline-primary text-white fw-bold" data-bs-toggle="modal" data-bs-target="#chatbotModal">
+                                ดูรายละเอียดโปรเจกต์
+                            </button>
                         </div>
                     </div>
                 </div>
-            </div> 
-        </div> 
-    </section>
+            </div>
 
-    <section id="works" class="container mb-5 pt-4">
-        <div class="text-center">
-            <h2 class="section-title section-title-center text-white">ผลงานของฉัน</h2>
-        </div>
-        <div class="row g-4 mt-2">
-            <div class="col-md-4">
-                <div class="card h-100 border-0">
-                    <img src="https://via.placeholder.com/400x250" class="card-img-top" alt="Project 1" style="border-top-left-radius: 16px; border-top-right-radius: 16px;">
-                    <div class="card-body d-flex flex-column justify-content-between p-4">
-                        <div>
-                            <h5 class="card-title text-white fw-bold mb-2">ชื่อผลงานที่ 1</h5>
-                            <p class="card-text text-secondary small mb-4">คำอธิบายสั้นๆ เกี่ยวกับโปรเจกต์งานของคุณ</p>
-                        </div>
-                        <a href="#" class="btn btn-cyber-outline btn-sm w-100">ดูรายละเอียด</a>
+            <div class="col-md-6">
+                <div class="card h-100 border-0 shadow-sm project-card" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); transition: all 0.3s ease;">
+                    <div class="position-relative overflow-hidden rounded-top" style="height: 240px; background: rgba(0,0,0,0.2);">
+                        <img src="myportfolio.png" class="img-fluid w-100 h-100" style="object-fit: cover;" alt="Personal Portfolio Website">
+                        <span class="badge bg-success position-absolute top-0 end-0 m-3" style="font-weight: 500;">Frontend</span>
                     </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card h-100 border-0">
-                    <img src="https://via.placeholder.com/400x250" class="card-img-top" alt="Project 2" style="border-top-left-radius: 16px; border-top-right-radius: 16px;">
-                    <div class="card-body d-flex flex-column justify-content-between p-4">
+                    
+                    <div class="card-body p-4 d-flex flex-column justify-content-between">
                         <div>
-                            <h5 class="card-title text-white fw-bold mb-2">ชื่อผลงานที่ 2</h5>
-                            <p class="card-text text-secondary small mb-4">คำอธิบายสั้นๆ เกี่ยวกับโปรเจกต์งานของคุณ</p>
+                            <h5 class="card-title text-white fw-bold mb-3">Personal Portfolio (Deep Space Theme)</h5>
+                            <p class="text-secondary small" style="line-height: 1.6; text-indent: 20px;">
+                                เว็บไซต์ประวัติส่วนตัวและรวบรวมผลงานสไตล์มินิมอลกึ่งล้ำสมัย ประยุกต์ใช้ธีมดวงดาวและอวกาศเพื่อสร้างเอกลักษณ์เฉพาะตัว...
+                            </p>
+                            <div class="mb-4 mt-3">
+                                <span class="badge rounded-pill bg-dark text-info border border-info-subtle me-1">HTML5</span>
+                                <span class="badge rounded-pill bg-dark text-info border border-info-subtle me-1">Bootstrap 5</span>
+                                <span class="badge rounded-pill bg-dark text-info border border-info-subtle">JavaScript</span>
+                            </div>
                         </div>
-                        <a href="#" class="btn btn-cyber-outline btn-sm w-100">ดูรายละเอียด</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card h-100 border-0">
-                    <img src="https://via.placeholder.com/400x250" class="card-img-top" alt="Project 3" style="border-top-left-radius: 16px; border-top-right-radius: 16px;">
-                    <div class="card-body d-flex flex-column justify-content-between p-4">
-                        <div>
-                            <h5 class="card-title text-white fw-bold mb-2">ชื่อผลงานที่ 3</h5>
-                            <p class="card-text text-secondary small mb-4">คำอธิบายสั้นๆ เกี่ยวกับโปรเจกต์งานของคุณ</p>
+                        
+                        <div class="d-grid">
+                            <button type="button" class="btn btn-outline-success text-white fw-bold" data-bs-toggle="modal" data-bs-target="#portfolioModal">
+                                ดูรายละเอียดโปรเจกต์
+                            </button>
                         </div>
-                        <a href="#" class="btn btn-cyber-outline btn-sm w-100">ดูรายละเอียด</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="py-5 mt-5" style="background: rgba(15, 23, 42, 0.7); border-top: 1px solid rgba(255,255,255,0.05); backdrop-filter: blur(10px);">
-        <div class="container text-center">
-            <h2 class="section-title section-title-center text-white">ช่องทางการติดต่อ</h2>
+    <div class="modal fade" id="chatbotModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 text-white" style="background: rgba(20, 24, 33, 0.95); backdrop-filter: blur(15px); box-shadow: 0 0 20px rgba(0, 122, 204, 0.3);">
+                <div class="modal-header border-bottom border-secondary">
+                    <h5 class="modal-title fw-bold text-primary"><i class="bi bi-chat-left-dots-fill me-2"></i>รายละเอียดโปรเจกต์แชตบอต</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body py-4">
+                    <p style="line-height: 1.8; font-size: 0.95rem;">
+                        <strong>🎯 ภาพรวมงาน:</strong> เป็นโปรเจกต์ในรายวิชาวิศวกรรมคอมพิวเตอร์ ที่เน้นฝึกฝนการดีไซน์หน้าจอซอฟต์แวร์และการแก้ปัญหา Layout 
+                    </p>
+                    <ul class="text-secondary small mt-3" style="line-height: 1.8;">
+                        <li><strong class="text-white">UI/UX Design:</strong> ออกแบบอินเตอร์เฟซและไอคอนโลโก้แชตบอตขึ้นเองทั้งหมดเพื่อความโดดเด่น</li>
+                        <li><strong class="text-white">Responsive Layout:</strong> ใช้ระบบ Grid ของ Bootstrap ครอบคลุมการแสดงผลทั้งหน้าจอคอมพิวเตอร์และมือถือ</li>
+                        <li><strong class="text-white">CSS แก้ไขจุดบั๊ก:</strong> ไล่เช็กและปรับแต่งระยะขอบ (Margin/Padding) และ Flexbox เพื่อแก้ปัญหาตำแหน่งกล่องข้อความเหลื่อมล้ำกัน</li>
+                    </ul>
+                </div>
+                <div class="modal-footer border-top border-secondary">
+                    <button type="button" class="btn btn-secondary fw-bold btn-sm" data-bs-dismiss="modal">ปิดหน้าต่าง</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="portfolioModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 text-white" style="background: rgba(20, 24, 33, 0.95); backdrop-filter: blur(15px); box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);">
+                <div class="modal-header border-bottom border-secondary">
+                    <h5 class="modal-title fw-bold text-success"><i class="bi bi-folder-fill me-2"></i>รายละเอียดเว็บไซต์พอร์ตโฟลิโอ</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body py-4">
+                    <p style="line-height: 1.8; font-size: 0.95rem;">
+                        <strong>🎯 ภาพรวมงาน:</strong> หน้าเว็บประวัติส่วนตัวในรูปแบบ Single Page Application สไตล์ดาร์กธีมที่พัฒนาขึ้นเพื่อแนะนำตัวเองและทักษะต่อบุคคลทั่วไป
+                    </p>
+                    <ul class="text-secondary small mt-3" style="line-height: 1.8;">
+                        <li><strong class="text-white">Full-Width Design:</strong> จัดระเบียบหน้าบล็อกสกิลและการศึกษาใหม่ให้อ่านง่าย กระชับ ไม่ทิ้งพื้นที่ว่างฝั่งซ้าย</li>
+                        <li><strong class="text-white">Interactive Theme:</strong> ใช้พื้นหลังธีมห้วงอวกาศจับคู่กับการ์ดสไตล์กระจกฝ้า (Glassmorphism) เพิ่มความทันสมัย</li>
+                        <li><strong class="text-white">Future Ready:</strong> เพิ่มส่วนโครงสร้างข้อมูลของทักษะภาษา JavaScript, C++ และส่วนเครื่องมือในการทำงานร่วมกับผู้อื่นไว้ครบครัน</li>
+                    </ul>
+                </div>
+                <div class="modal-footer border-top border-secondary">
+                    <button type="button" class="btn btn-secondary fw-bold btn-sm" data-bs-dismiss="modal">ปิดหน้าต่าง</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0, 122, 204, 0.2) !important;
+            background: rgba(255, 255, 255, 0.08) !important;
+        }
+    </style>
+
+    <section id="contact" class="container mb-5 pt-5 text-center">
+        <hr class="border-secondary mb-5">
+        <h3 class="section-title text-white mb-4">ช่องทางการติดต่อ (Contact)</h3>
+        <p class="text-secondary mb-4">หากสนใจร่วมงานหรือสอบถามข้อมูลเพิ่มเติม สามารถติดต่อกระผมได้ตามช่องทางด้านล่างนี้ครับ</p>
+        
+        <div class="row g-3 justify-content-center">
+            <!-- 1. อีเมล (อัปเดตที่อยู่เมลของคุณทันแล้ว) -->
+            <div class="col-md-3 col-sm-6">
+                <a href="mailto:sithasajhatayssome@gmail.com" class="card p-3 text-decoration-none h-100 d-flex flex-column align-items-center justify-content-center contact-card" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); transition: all 0.3s ease;">
+                    <div class="fs-2 text-primary mb-2"><i class="bi bi-envelope-fill"></i></div>
+                    <span class="text-white small fw-bold">Email</span>
+                    <span class="text-secondary xs-text mt-1" style="font-size: 0.75rem;">sithasajhatayssome@gmail.com</span>
+                </a>
+            </div>
+
+            <!-- 2. เบอร์โทรศัพท์ (เปลี่ยนตรงเลข 0912345678 เป็นเบอร์จริงของคุณทันได้เลยครับ) -->
+            <div class="col-md-3 col-sm-6">
+                <a href="tel:0993739421" class="card p-3 text-decoration-none h-100 d-flex flex-column align-items-center justify-content-center contact-card" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); transition: all 0.3s ease;">
+                    <div class="fs-2 text-success mb-2"><i class="bi bi-telephone-fill"></i></div>
+                    <span class="text-white small fw-bold">Phone</span>
+                    <span class="text-secondary xs-text mt-1" style="font-size: 0.75rem;">099-373-9421</span>
+                </a>
+            </div>
             
-            <div class="mb-4 fs-5 text-secondary">
-                <p class="mb-2"><i class="bi bi-envelope-fill me-2 text-primary"></i>Email: <span style="font-family: 'Fira Code', monospace; color: #fff;">sittha.s@psru.ac.th</span></p>
-                <p class="mb-0"><i class="bi bi-telephone-fill me-2 text-primary"></i>Tel: <span style="font-family: 'Fira Code', monospace; color: #fff;">099-373-9421</span></p>
-            </div>
-
-            <div class="d-flex justify-content-center align-items-center gap-4 mt-4">
-                <a href="https://www.facebook.com/tun.sittha" target="_blank" title="เปิด Facebook">
-                    <div class="contact-icon-box fb-hover">
-                        <i class="bi bi-facebook"></i>
-                    </div>
-                </a>
-                <a href="https://www.instagram.com/t.xnnx_y/" target="_blank" title="เปิด Instagram">
-                    <div class="contact-icon-box ig-hover">
-                        <i class="bi bi-instagram"></i>
-                    </div>
+            <!-- 3. GitHub -->
+            <div class="col-md-3 col-sm-6">
+                <a href="https://github.com/Tunny10" target="_blank" class="card p-3 text-decoration-none h-100 d-flex flex-column align-items-center justify-content-center contact-card" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); transition: all 0.3s ease;">
+                    <div class="fs-2 text-light mb-2"><i class="bi bi-github"></i></div>
+                    <span class="text-white small fw-bold">GitHub</span>
+                    <span class="text-secondary xs-text mt-1" style="font-size: 0.75rem;">ดูซอร์สโค้ดโปรเจกต์</span>
                 </a>
             </div>
-            <p class="small text-muted mt-5 mb-0" style="font-family: 'Fira Code', monospace;">&copy; 2026 Sittha Sajjahatayasrom. All rights reserved.</p>
         </div>
     </section>
+
+    <!-- สไตล์เสริมให้กล่องติดต่อลอยได้เวลาเมาส์ชี้ -->
+    <style>
+        .contact-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.1) !important;
+            border-color: rgba(255, 255, 255, 0.2) !important;
+            box-shadow: 0 8px 20px rgba(255,255,255,0.05);
+        }
+    </style>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -373,11 +562,18 @@
         function resizeCanvas() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
+            
+            if(stars.length > 0) {
+                stars.forEach(star => {
+                    star.x = Math.random() * canvas.width;
+                    star.y = Math.random() * canvas.height;
+                    star.baseX = star.x;
+                    star.baseY = star.y;
+                });
+            }
         }
         window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
 
-        // --- ระบบจัดระดับดวงดาวธรรมดา (Smooth Parallax Stars) ---
         const stars = [];
         const numStars = 150;
         let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
@@ -395,22 +591,20 @@
                 this.size = Math.random() * 1.8;
                 this.baseX = this.x;
                 this.baseY = this.y;
-                // แบ่งสุ่มน้ำหนักความลึก 3 ระดับเพื่อการเคลื่อนไหวที่เป็นชั้นเลเยอร์
                 this.layer = Math.random(); 
                 if(this.layer < 0.5) {
-                    this.speedFactor = 0.008; // ชั้นไกลสุด (เคลื่อนไหวช้ามาก)
+                    this.speedFactor = 0.008; 
                     this.alpha = Math.random() * 0.4 + 0.2;
                 } else if(this.layer < 0.8) {
-                    this.speedFactor = 0.02;  // ชั้นกลาง
+                    this.speedFactor = 0.02;  
                     this.alpha = Math.random() * 0.5 + 0.4;
                 } else {
-                    this.speedFactor = 0.04;  // ชั้นใกล้สุด (เคลื่อนไหวไว)
+                    this.speedFactor = 0.04;  
                     this.alpha = Math.random() * 0.4 + 0.6;
                 }
             }
 
             update() {
-                // เพิ่มระบบดึงค่าแบบเฉื่อย (Easing) ให้ดาวขยับแบบลื่นนุ่มนวลขึ้น
                 let dx = (currentMouse.x - canvas.width / 2) * this.speedFactor;
                 let dy = (currentMouse.y - canvas.height / 2) * this.speedFactor;
 
@@ -424,7 +618,6 @@
             }
 
             draw() {
-                // เอฟเฟกต์กระพริบระยิบระยับเบาๆ
                 let twinkle = this.alpha + (Math.random() * 0.2 - 0.1);
                 twinkle = Math.max(0.1, Math.min(1, twinkle));
                 ctx.fillStyle = `rgba(255, 255, 255, ${twinkle})`;
@@ -434,7 +627,6 @@
             }
         }
 
-        // --- ระบบดาวตก (Shooting Stars) ---
         const shootingStars = [];
 
         class ShootingStar {
@@ -443,7 +635,6 @@
             }
 
             reset() {
-                // สุ่มให้โผล่มาจากขอบบนหรือขอบขวาของจอภาพ
                 if (Math.random() > 0.5) {
                     this.x = Math.random() * canvas.width;
                     this.y = 0;
@@ -452,9 +643,8 @@
                     this.y = Math.random() * (canvas.height * 0.5);
                 }
                 
-                this.len = Math.random() * 80 + 40; // ความยาวหางดาวตก
-                this.speed = Math.random() * 10 + 6; // ความเร็วในการพุ่ง
-                // มุมพุ่งลงด้านล่างซ้ายเฉียงๆ
+                this.len = Math.random() * 80 + 40; 
+                this.speed = Math.random() * 10 + 6; 
                 this.dx = -this.speed;
                 this.dy = this.speed * (Math.random() * 0.4 + 0.6); 
                 this.alpha = 1;
@@ -464,7 +654,7 @@
             update() {
                 this.x += this.dx;
                 this.y += this.dy;
-                this.alpha -= 0.015; // ค่อยๆ จางลงขณะเคลื่อนที่
+                this.alpha -= 0.015; 
                 if (this.alpha <= 0 || this.x < 0 || this.y > canvas.height) {
                     this.active = false;
                 }
@@ -473,10 +663,9 @@
             draw() {
                 if (!this.active) return;
                 ctx.save();
-                // สร้างเส้นไล่เฉดสีชวนเรืองแสงให้หางดาวตก
                 let grad = ctx.createLinearGradient(this.x, this.y, this.x - this.dx * 2, this.y - this.dy * 2);
                 grad.addColorStop(0, `rgba(255, 255, 255, ${this.alpha})`);
-                grad.addColorStop(0.2, `rgba(147, 197, 253, ${this.alpha * 0.6})`); // เจือสีฟ้าอ่อนตรงหาง
+                grad.addColorStop(0.2, `rgba(147, 197, 253, ${this.alpha * 0.6})`); 
                 grad.addColorStop(1, 'rgba(255, 255, 255, 0)');
                 
                 ctx.strokeStyle = grad;
@@ -489,31 +678,28 @@
             }
         }
 
-        // เริ่มต้นสร้างดวงดาวธรรมดา
         for (let i = 0; i < numStars; i++) {
             stars.push(new Star());
         }
 
-        // ฟังก์ชันวนรอบจัดการแอนิเมชันทั้งหมด (Loop)
+        // เรียกใช้ครั้งแรกเพื่อจัดหน้าจอ
+        resizeCanvas();
+
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            // คำนวณความเฉื่อยของเมาส์ ให้ดาวเคลื่อนตามเมาส์นุ่มๆ ไม่กระตุก
             currentMouse.x += (mouse.x - currentMouse.x) * 0.08;
             currentMouse.y += (mouse.y - currentMouse.y) * 0.08;
 
-            // วาดและอัปเดตดาวปกติ
             stars.forEach(star => {
                 star.update();
                 star.draw();
             });
 
-            // สุ่มโอกาสเกิดดาวตกดวงใหม่ (ยิ่งค่าน้อย ยิ่งเกิดบ่อย)
             if (Math.random() < 0.015 && shootingStars.length < 4) {
                 shootingStars.push(new ShootingStar());
             }
 
-            // วาดและอัปเดตดาวตก
             for (let i = shootingStars.length - 1; i >= 0; i--) {
                 let sstar = shootingStars[i];
                 sstar.update();
