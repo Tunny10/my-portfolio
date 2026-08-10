@@ -469,6 +469,38 @@
                     </div>
                 </div>
             </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 border-0 shadow-sm project-card" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); transition: all 0.3s ease;">
+                    <div class="position-relative overflow-hidden rounded-top" style="height: 240px; background: rgba(0,0,0,0.2);">
+                        <img src="image/expensetracker.png" class="img-fluid w-100 h-100" style="object-fit: cover;" alt="Expense Tracker Web App">
+                        <span class="badge bg-info text-dark position-absolute top-0 end-0 m-3" style="font-weight: 500;">Full-Stack</span>
+                    </div>
+                    
+                    <div class="card-body p-4 d-flex flex-column justify-content-between">
+                        <div>
+                            <h5 class="card-title text-white fw-bold mb-3">Expense Tracker</h5>
+                            <p class="text-secondary small" style="line-height: 1.6; text-indent: 20px;">
+                                เว็บแอปพลิเคชันบันทึกและติดตามค่าใช้จ่ายส่วนตัว เชื่อมต่อฐานข้อมูลแบบเรียลไทม์ พร้อมระบบสรุปยอดด้วยกราฟวงกลม...
+                            </p>
+                            <div class="mb-4 mt-3">
+                                <span class="badge rounded-pill bg-dark text-info border border-info-subtle me-1">JavaScript</span>
+                                <span class="badge rounded-pill bg-dark text-info border border-info-subtle me-1">Firebase</span>
+                                <span class="badge rounded-pill bg-dark text-info border border-info-subtle">Chart.js</span>
+                            </div>
+                        </div>
+                        
+                        <div class="d-grid gap-2">
+                            <button type="button" class="btn btn-outline-info text-white fw-bold" data-bs-toggle="modal" data-bs-target="#expenseModal">
+                                ดูรายละเอียดโปรเจกต์
+                            </button>
+                            <a href="https://YOUR-VERCEL-LINK.vercel.app/" target="_blank" class="btn btn-info fw-bold text-dark">
+                                <i class="bi bi-box-arrow-up-right me-1"></i>เข้าชมเว็บไซต์จริง
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -540,6 +572,34 @@
                 </div>
                 <div class="modal-footer border-top border-secondary">
                     <a href="https://github.com/Tunny10/gamer-hub" target="_blank" class="btn btn-outline-light btn-sm">
+                        <i class="bi bi-github me-1"></i>Source Code
+                    </a>
+                    <button type="button" class="btn btn-secondary fw-bold btn-sm" data-bs-dismiss="modal">ปิดหน้าต่าง</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="expenseModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 text-white" style="background: rgba(20, 24, 33, 0.95); backdrop-filter: blur(15px); box-shadow: 0 0 20px rgba(6, 182, 212, 0.3);">
+                <div class="modal-header border-bottom border-secondary">
+                    <h5 class="modal-title fw-bold text-info"><i class="bi bi-wallet2 me-2"></i>Expense Tracker</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body py-4">
+                    <p style="line-height: 1.8; font-size: 0.95rem;">
+                        <strong>🎯 ภาพรวมงาน:</strong> เว็บแอปพลิเคชันสำหรับบันทึกและติดตามค่าใช้จ่ายส่วนตัว เชื่อมต่อฐานข้อมูล Firebase Firestore แบบเรียลไทม์
+                    </p>
+                    <ul class="text-secondary small mt-3" style="line-height: 1.8;">
+                        <li><strong class="text-white">Real-time Database:</strong> ใช้ Firebase Firestore บันทึกและซิงค์ข้อมูลทันทีโดยไม่ต้อง Refresh หน้า</li>
+                        <li><strong class="text-white">CRUD Operations:</strong> ผู้ใช้สามารถเพิ่ม แสดง และลบรายการค่าใช้จ่ายได้ครบวงจร</li>
+                        <li><strong class="text-white">Data Visualization:</strong> สรุปยอดค่าใช้จ่ายแยกตามหมวดหมู่ด้วยกราฟวงกลม (Chart.js)</li>
+                        <li><strong class="text-white">Deployment:</strong> นำโค้ดขึ้น GitHub และ Deploy ผ่าน Vercel</li>
+                    </ul>
+                </div>
+                <div class="modal-footer border-top border-secondary">
+                    <a href="https://github.com/Tunny10/expense-tracker" target="_blank" class="btn btn-outline-light btn-sm">
                         <i class="bi bi-github me-1"></i>Source Code
                     </a>
                     <button type="button" class="btn btn-secondary fw-bold btn-sm" data-bs-dismiss="modal">ปิดหน้าต่าง</button>
